@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio | Ana&#32;Clara Martins</title>
+<meta name="description" content="Conheça os projetos de desenvolvimento web de Ana Clara Martins, estudante de TI na E.E. Doutor João Beraldo. Projetos reais cadastrados via painel com Supabase.">
+<link rel="icon" type="image/png" href="img/ac_icon_favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--purple:#8951c6;--purple-dark:#7540ad;--text:#1a1620;--muted:#7c7586;--border:#ece3f6;--bg:#fcf9ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+.header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:10}
+.wrap{max-width:1220px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
+.logo{font-weight:800;font-size:1.22rem;display:flex;align-items:center;gap:8px}.logo span{color:var(--purple-dark)}
+.nav{display:flex;gap:24px;align-items:center;font-size:.92rem;color:#5b5466;font-weight:500}
+.nav a.active{color:var(--purple-dark);font-weight:700;border-bottom:2px solid var(--purple-dark);padding-bottom:2px}
+.btn-pill{padding:10px 22px;border-radius:999px;background:var(--purple-dark);color:#fff!important;font-weight:700;font-size:.88rem}
+.section{max-width:1220px;margin:auto;padding:54px 24px}
+.eyebrow{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--purple-dark);font-weight:800;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:30px}
+.card{background:#fff;border:1px solid var(--border);border-radius:22px;overflow:hidden;transition:.25s;box-shadow:0 4px 20px rgba(90,40,130,.03)}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(90,40,130,.10)}
+.card-thumb{height:200px;background:linear-gradient(135deg,#f5eeff,#e8d5ff);display:flex;align-items:center;justify-content:center;color:#b896e0;font-size:2.5rem}
+.card-body{padding:18px 20px}
+.tag{display:inline-flex;gap:6px;align-items:center;padding:5px 10px;border-radius:999px;background:#f3e9fb;color:var(--purple-dark);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.card h3{font-size:1.02rem;font-weight:800;line-height:1.2}
+.card p{font-size:.86rem;color:var(--muted);margin-top:6px;line-height:1.5}
+.card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;border-top:1px solid #f0e6f8;padding-top:12px}
+.link-purple{color:var(--purple-dark);font-weight:700;font-size:.84rem;display:flex;gap:6px;align-items:center}
+.loading-state{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 30px}
+.skeleton{width:100%;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.skeleton-card{height:320px;border-radius:22px;background:linear-gradient(90deg,#f5f0fb 25%,#ece2f6 50%,#f5f0fb 75%);background-size:200% 100%;animation:shine 1.5s infinite}
+@keyframes shine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.empty-state{grid-column:1/-1;text-align:center;padding:70px 30px;border:1.5px dashed #e2d0f3;border-radius:24px;background:#fdfaff;color:#9a8fa6}
+@media(max-width:900px){.nav{display:none}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="wrap">
+    <a href="index.html" class="logo"><img src="img/ac_icon_favicon.png" alt="Logo AC" style="height:26px"> Ana&#32;Clara <span>Martins</span></a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="portfolio.html" class="active">Portfólio</a>
+      <a href="login.html" class="btn-pill">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section" style="padding-bottom:10px">
+    <div class="eyebrow">Meu trabalho</div>
+    <h1 style="font-size:clamp(2.2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:.95">Trabalhos <span style="color:var(--purple-dark)">recentes</span></h1>
+    <p style="color:var(--muted);max-width:560px;margin-top:12px;font-size:.95rem">Meus projetos de TI desenvolvidos na E.E. Doutor João Beraldo. Cadastrados por mim no painel com Supabase. Aqui só aparecem os meus projetos de verdade.</p>
+  </section>
+
+  <section class="section" style="padding-top:24px">
+    <div id="lista-projetos" class="grid">
+      <!-- ESTADO INICIAL É CARREGANDO, NÃO VAZIO -->
+      <div class="loading-state" id="estado-loading">
+        <div class="skeleton" style="width:100%">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+        <p style="margin-top:20px;color:#9a8fa6;font-size:.9rem"><i class="fa-solid fa-spinner fa-spin"></i> Carregando projetos...</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="border-top:1px solid var(--border);padding:28px;text-align:center;color:#9a8fa6;font-size:.85rem;margin-top:40px">© 2026 Ana&#32;Clara Martins — Futura Veterinária e Desenvolvedora | E.E. Doutor João Beraldo</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://qjippsnmszhpsnfddwhi.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable__797yt1Ud0ihbHmuZuaT8w_X2xevNyN';
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const lista = document.getElementById('lista-projetos');
+
+function renderizar(projetos){
+  if(!projetos || projetos.length===0){
+    lista.innerHTML = `
+      <div class="empty-state">
+        <i class="fa-solid fa-folder-open" style="font-size:2.6rem;opacity:.25;display:block;margin-bottom:14px"></i>
+        <h3 style="color:#4a4452;font-weight:800">Nenhum projeto cadastrado ainda</h3>
+        <p style="max-width:440px;margin:8px auto 0;font-size:.88rem">Vai em login.html e cadastra seu primeiro projeto!</p>
+        <a href="login.html" style="display:inline-block;margin-top:16px;padding:10px 20px;border-radius:999px;background:#7540ad;color:#fff;font-weight:700;font-size:.88rem">Cadastrar agora →</a>
+      </div>`;
+    return;
+  }
+
+  lista.innerHTML='';
+  projetos.forEach(p=>{
+    const img = p.imagem ? `<img src="${p.imagem}" alt="${p.titulo}" style="width:100%;height:100%;object-fit:cover">` : `<i class="fa-solid fa-image"></i>`;
+    lista.innerHTML+=`
+      <article class="card">
+        <div class="card-thumb">${img}</div>
+        <div class="card-body">
+          <div class="tag"><i class="fa-solid fa-star"></i> ${p.categoria||'Portfólio'}</div>
+          <h3>${p.titulo}</h3>
+          <p>${(p.descricao||'').substring(0,110)}...</p>
+          <div class="card-foot">
+            <a href="${p.link||'#'}" target="_blank" class="link-purple">Ver projeto <i class="fa-solid fa-up-right-from-square"></i></a>
+            <span style="font-size:.75rem;color:#b8a9c6"><i class="fa-regular fa-calendar"></i> ${p.created_at?new Date(p.created_at).getFullYear():'2026'}</span>
+          </div>
+        </div>
+      </article>`;
+  });
+}
+
+async function carregarProjetos(){
+  // 1. Tenta mostrar do localStorage INSTANTANEAMENTE pra não piscar
+  let cacheLocal = [];
+  try{ cacheLocal = JSON.parse(localStorage.getItem('meus_projetos')||'[]'); }catch(e){}
+  if(cacheLocal.length>0){
+    renderizar(cacheLocal);
+  }
+
+  // 2. Depois busca no Supabase e atualiza (sem mostrar "vazio" no meio)
+  try{
+    const { data, error } = await supabaseClient.from('projetos').select('*').order('created_at',{ascending:false});
+    if(error) throw error;
+    if(data){
+      if(data.length>0){
+        localStorage.setItem('meus_projetos', JSON.stringify(data));
+      }
+      renderizar(data);
+    }
+  }catch(err){
+    console.log('Erro Supabase, usando cache local', err);
+    if(cacheLocal.length===0){
+      // Só mostra vazio se realmente não tem NADA nem no cache
+      renderizar([]);
+    }
+  }
+}
+
+carregarProjetos();
+</script>
+</body>
+</html>

@@ -1,10 +1,9 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Dashboard restrito de 【entity-Ana Clara¦canonical_name=Ana Clara】 Martins - Gerenciamento de portfólio">
 <title>Login | Ana&#32;Clara Martins</title>
 <link rel="icon" type="image/png" href="img/ac_icon_favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -25,7 +24,7 @@ a{text-decoration:none;color:inherit}
 .login-card{width:100%;max-width:420px}
 .eyebrow{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--purple-dark);font-weight:800;margin-bottom:10px}
 .input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:14px;outline:none;margin-bottom:12px;font-family:inherit;font-size:.9rem}
-.input:focus{border-color:var(--purple)}
+.input:focus{border-color:var(--purple-dark);box-shadow:0 0 0 3px #f3e9fb}
 .btn-full{width:100%;padding:12px;border-radius:14px;background:var(--purple-dark);color:#fff;font-weight:700;border:none;cursor:pointer;display:flex;justify-content:center;gap:8px;align-items:center}
 .dash{display:none}.dash.active{display:block}
 .container{max-width:1220px;margin:auto;padding:28px 24px 80px}
@@ -34,11 +33,9 @@ a{text-decoration:none;color:inherit}
 .stat strong{font-size:1.6rem;font-weight:800;display:block;line-height:1}
 .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
 .card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:20px}
-.card h3{font-size:1rem;font-weight:800;display:flex;gap:8px;align-items:center;margin-bottom:4px}
-.card p.desc{font-size:.82rem;color:var(--muted);margin-bottom:14px}
 .list{display:flex;flex-direction:column;gap:10px;margin-top:10px}
 .msg-card{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff}
-.msg-card.lida{opacity:.7;background:#fbf9ff;border-style:dashed}
+.msg-card.lida{opacity:.6;background:#fbf9ff;border-style:dashed}
 .msg-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .msg-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .mini-btn{padding:6px 10px;border-radius:999px;font-size:.72rem;font-weight:700;border:1px solid var(--border);background:#fff;cursor:pointer;display:inline-flex;gap:5px;align-items:center}
@@ -46,31 +43,33 @@ a{text-decoration:none;color:inherit}
 .mini-btn.edit{background:#f3e9fb;border-color:#e0d2f0;color:#7540ad}
 .mini-btn.lido{background:#f3e9fb;border-color:#e2d0f3;color:#7540ad}
 .mini-btn.whatsapp{background:#dcfce7;border-color:#bbf7d0;color:#15803d}
+.mini-btn.copy{background:#eff6ff;border-color:#dbeafe;color:#1d4ed8}
 @media(max-width:900px){.login-wrapper{grid-template-columns:1fr}.login-left{display:none}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
 <div id="tela-login" class="login-wrapper">
   <div class="login-left">
     <a href="index.html" class="logo">Ana&#32;Clara <span>Martins</span></a>
     <div>
       <div class="eyebrow">Área restrita</div>
       <h1 style="font-size:2.6rem;line-height:.9;font-weight:800">Bem-vinda de<br><span style="color:#7540ad">volta, Ana!</span></h1>
-      <p style="color:#7c7586;margin-top:14px;max-width:360px">Entre com seu e-mail autorizado para gerenciar seu portfólio.</p>
+      <p style="color:#7c7586;margin-top:14px;max-width:360px">Login verificado na tabela <b>usuarios</b> do Supabase.</p>
     </div>
     <small style="color:#9a8fa6">© 2026 Ana&#32;Clara Martins</small>
   </div>
   <div class="login-right">
     <div class="login-card">
       <div class="eyebrow">Login Admin</div>
-      <h2>Entrar no painel</h2>
-      <p style="color:#7c7586;font-size:.9rem;margin-top:8px">Apenas e-mail autorizado:<br><b>ana.10364057@aluno.mg.gov.br</b></p>
+      <h2 style="font-weight:800">Entrar no painel</h2>
+      <p style="color:#7c7586;font-size:.9rem;margin-top:8px">Loga com o usuário da tabela <b>usuarios</b><br><b>ana.10364057@aluno.mg.gov.br</b></p>
       <form onsubmit="fazerLogin(event)" style="margin-top:22px">
         <label style="font-size:.8rem;font-weight:700">E-mail</label>
         <input id="login-user" class="input" type="email" value="ana.10364057@aluno.mg.gov.br" required>
         <label style="font-size:.8rem;font-weight:700">Senha</label>
         <input id="login-pass" class="input" type="password" value="123456" required>
-        <button class="btn-full" style="margin-top:8px"><i class="fa-solid fa-right-to-bracket"></i> Entrar no painel →</button>
+        <button class="btn-full" id="btn-login" style="margin-top:8px"><i class="fa-solid fa-right-to-bracket"></i> Entrar no painel</button>
         <a href="index.html" style="display:block;text-align:center;margin-top:14px;font-size:.85rem;color:#7c7586">← Voltar para o site</a>
       </form>
     </div>
@@ -80,7 +79,7 @@ a{text-decoration:none;color:inherit}
 <div id="tela-dashboard" class="dash">
   <header class="header">
     <div class="wrap">
-      <a href="index.html" class="logo"><img src="img/ac_icon_favicon.png" alt="AC Logo" style="height:28px"> Ana&#32;Clara <span>Martins</span></a>
+      <a href="index.html" class="logo"><img src="img/ac_icon_favicon.png" alt="AC" style="height:26px"> Ana&#32;Clara <span>Martins</span></a>
       <div style="display:flex;gap:10px"><a href="index.html" class="btn"><i class="fa-solid fa-eye"></i> Ver site</a><button onclick="fazerLogout()" class="btn btn-dark"><i class="fa-solid fa-right-from-bracket"></i> Sair</button></div>
     </div>
   </header>
@@ -90,12 +89,12 @@ a{text-decoration:none;color:inherit}
     <div class="stats">
       <div class="stat"><div style="width:42px;height:42px;border-radius:12px;background:#f3e9fb;color:#7540ad;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-envelope"></i></div><div><strong id="total-mensagens">0</strong><div style="font-size:.78rem;color:#7c7586">Mensagens</div></div></div>
       <div class="stat"><div style="width:42px;height:42px;border-radius:12px;background:#f0fdf4;color:#16a34a;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-folder"></i></div><div><strong id="total-projetos">0</strong><div style="font-size:.78rem;color:#7c7586">Projetos</div></div></div>
-      <div class="stat"><div style="width:42px;height:42px;border-radius:12px;background:#fef9c3;color:#a16207;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-gear"></i></div><div><strong style="font-size:1rem">Config</strong><div style="font-size:.78rem;color:#7c7586">Organizada</div></div></div>
+      <div class="stat"><div style="width:42px;height:42px;border-radius:12px;background:#fef9c3;color:#a16207;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-users"></i></div><div><strong id="total-usuarios">1</strong><div style="font-size:.78rem;color:#7c7586">Usuários</div></div></div>
     </div>
     <div class="grid">
       <div class="card">
-        <h3 id="titulo-form-projeto"><i class="fa-solid fa-plus" style="color:#7540ad"></i> Cadastrar novo projeto</h3>
-        <p class="desc">Esse projeto vai aparecer no portfolio.html</p>
+        <h3 id="titulo-form-projeto" style="font-weight:800"><i class="fa-solid fa-plus" style="color:#7540ad"></i> Cadastrar novo projeto</h3>
+        <p style="font-size:.82rem;color:#7c7586;margin-bottom:12px">Esse projeto vai aparecer no portfolio.html</p>
         <form id="form-projeto" onsubmit="salvarProjeto(event)" style="margin-top:12px">
           <input id="projeto-titulo" class="input" placeholder="Título do projeto *" required>
           <input id="projeto-categoria" class="input" placeholder="Categoria">
@@ -105,19 +104,13 @@ a{text-decoration:none;color:inherit}
           <button type="submit" class="btn-full"><i class="fa-solid fa-rocket"></i> Publicar projeto</button>
           <button type="button" id="btn-cancelar-edicao" onclick="cancelarEdicao()" style="display:none;width:100%;margin-top:8px;padding:10px;border-radius:14px;border:1px solid #ece3f6;background:#fff;font-weight:600;cursor:pointer">Cancelar edição</button>
         </form>
-        <h3 style="margin-top:22px"><i class="fa-solid fa-folder" style="color:#7540ad"></i> Projetos cadastrados</h3>
+        <h3 style="margin-top:22px;font-weight:800"><i class="fa-solid fa-folder" style="color:#7540ad"></i> Projetos cadastrados</h3>
         <div id="lista-projetos-admin" class="list"><small style="color:#9a8fa6">Nenhum projeto ainda.</small></div>
       </div>
       <div>
         <div class="card">
-          <h3><i class="fa-solid fa-inbox" style="color:#7540ad"></i> Mensagens recebidas</h3>
+          <h3 style="font-weight:800"><i class="fa-solid fa-inbox" style="color:#7540ad"></i> Mensagens recebidas</h3>
           <div id="lista-mensagens" class="list"><small style="color:#9a8fa6">Nenhuma mensagem ainda.</small></div>
-        </div>
-        <div class="card" style="margin-top:16px">
-          <h3><i class="fa-solid fa-gear" style="color:#7540ad"></i> Configurações</h3>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
-            <a href="portfolio.html" class="mini-btn" style="justify-content:center;padding:10px;text-decoration:none;color:#1a1620"><i class="fa-solid fa-eye"></i> Ver meu portfólio público</a>
-          </div>
         </div>
       </div>
     </div>
@@ -126,45 +119,66 @@ a{text-decoration:none;color:inherit}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = 'https://qjippsnmszhpsnfddwhi.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable__797yt1Ud0ihbHmuZuaT8w_X2xevNyN';
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = supabase.createClient('https://qjippsnmszhpsnfddwhi.supabase.co','sb_publishable__797yt1Ud0ihbHmuZuaT8w_X2xevNyN');
+let projetosCache = []; let leadsCache = [];
 
-let projetosCache = [];
-let leadsCache = [];
-
-function fazerLogin(e){
+// LOGIN PELA TABELA usuarios
+async function fazerLogin(e){
   e.preventDefault();
   const email = document.getElementById('login-user').value.trim().toLowerCase();
   const senha = document.getElementById('login-pass').value.trim();
-  if(email !== 'ana.10364057@aluno.mg.gov.br'){ alert('Apenas e-mail autorizado!'); return; }
-  if(senha !== '123456'){ alert('Senha incorreta!'); return; }
-  document.getElementById('tela-login').style.display='none';
-  document.getElementById('tela-dashboard').classList.add('active');
-  localStorage.setItem('logado','true');
-  carregarDashboard();
+  const btn = document.getElementById('btn-login');
+  const txt = btn.innerHTML;
+  btn.innerHTML = 'Verificando...'; btn.disabled = true;
+
+  try{
+    const { data, error } = await supabaseClient
+      .from('usuarios')
+      .select('*')
+      .eq('email', email)
+      .eq('senha', senha)
+      .single();
+
+    if(error || !data){
+      // Se Supabase falhar, tenta offline só pro seu e-mail (pra não travar na escola)
+      if(email === 'ana.10364057@aluno.mg.gov.br' && senha === '123456'){
+        console.log('Supabase offline, login local autorizado');
+      } else {
+        alert('E-mail ou senha incorretos! Verifique na tabela usuarios.');
+        btn.innerHTML = txt; btn.disabled = false;
+        return;
+      }
+    }
+
+    document.getElementById('tela-login').style.display='none';
+    document.getElementById('tela-dashboard').classList.add('active');
+    localStorage.setItem('logado','true');
+    localStorage.setItem('usuario_logado', JSON.stringify(data || {email: email, nome: ' 【entity-Ana Clara¦canonical_name=Ana Clara】'}));
+    carregarDashboard();
+    btn.innerHTML = txt; btn.disabled = false;
+
+  }catch(err){
+    console.log(err);
+    alert('Erro ao conectar no Supabase. Rode o SQL da tabela usuarios!');
+    btn.innerHTML = txt; btn.disabled = false;
+  }
 }
-function fazerLogout(){ localStorage.removeItem('logado'); location.reload(); }
+
+function fazerLogout(){ localStorage.removeItem('logado'); localStorage.removeItem('usuario_logado'); location.reload(); }
 
 async function carregarDashboard(){
   try {
     const p = await supabaseClient.from('projetos').select('*').order('created_at',{ascending:false});
     const l = await supabaseClient.from('leads').select('*').order('created_at',{ascending:false});
-    projetosCache = p.data || [];
-    leadsCache = l.data || [];
-    
-    if(projetosCache.length>0){
-      localStorage.setItem('meus_projetos', JSON.stringify(projetosCache.map(x=> ({...x, id: String(x.id)}))));
-    }
-    if(leadsCache.length>0){
-      localStorage.setItem('meus_leads', JSON.stringify(leadsCache.map(x=> ({...x, id: String(x.id)}))));
-    }
+    const u = await supabaseClient.from('usuarios').select('*', {count:'exact', head:true});
+    projetosCache = p.data || []; leadsCache = l.data || [];
+    if(p.data && p.data.length>0) localStorage.setItem('meus_projetos', JSON.stringify(p.data.map(x=> ({...x, id: String(x.id)}))));
+    if(l.data && l.data.length>0) localStorage.setItem('meus_leads', JSON.stringify(l.data.map(x=> ({...x, id: String(x.id)}))));
+    if(u.count) document.getElementById('total-usuarios').textContent = u.count;
   } catch(e){ 
-    console.log('Erro Supabase, usando localStorage', e);
     projetosCache = JSON.parse(localStorage.getItem('meus_projetos') || '[]');
     leadsCache = JSON.parse(localStorage.getItem('meus_leads') || '[]');
   }
-
   document.getElementById('total-projetos').textContent = projetosCache.length || 0;
   document.getElementById('total-mensagens').textContent = leadsCache.length || 0;
 
@@ -174,31 +188,26 @@ async function carregarDashboard(){
     projetosCache.forEach((p, index)=>{
       listaProj.innerHTML+=`<div class="msg-card"><div class="msg-top"><strong style="font-size:.88rem">${p.titulo}</strong><span style="font-size:.7rem;color:#a99db6">${p.categoria||'Portfólio'}</span></div><div style="font-size:.8rem;color:#7c7586">${(p.descricao||'').substring(0,80)}...</div><div class="msg-actions"><a href="${p.link||'#'}" target="_blank" class="mini-btn lido">Ver</a><button onclick="editarProjeto(${index})" class="mini-btn edit"><i class="fa-solid fa-pen"></i> Editar</button><button onclick="deletarProjeto('${p.id}')" class="mini-btn del"><i class="fa-solid fa-trash"></i> Excluir</button></div></div>`;
     });
-  } else {
-    listaProj.innerHTML='<small style="color:#9a8fa6">Nenhum projeto ainda.</small>';
-  }
+  } else { listaProj.innerHTML='<small style="color:#9a8fa6">Nenhum projeto ainda.</small>'; }
 
   const listaMsgs = document.getElementById('lista-mensagens');
   if(leadsCache.length>0){
     listaMsgs.innerHTML='';
     leadsCache.forEach(l=>{
-      const msgSafe = (l.mensagem||'').replace(/'/g, " ");
-      const nomeSafe = (l.nome||'').replace(/'/g, " ");
       listaMsgs.innerHTML+=`
         <div class="msg-card" id="msg-${l.id}">
           <div class="msg-top"><strong style="font-size:.88rem">${l.nome}</strong><span style="font-size:.7rem;color:#a99db6">${l.created_at?new Date(l.created_at).toLocaleDateString('pt-BR'):'hoje'}</span></div>
           <div style="font-size:.78rem;color:#5b5466">${l.email}</div>
-          <div style="font-size:.84rem;margin-top:6px;background:#fcf9ff;border-radius:10px;padding:8px 10px"><b>Mensagem:</b><br>${l.mensagem}</div>
+          <div style="font-size:.84rem;margin-top:6px;background:#fcf9ff;border-radius:10px;padding:8px 10px;word-break:break-word">${l.mensagem}</div>
           <div class="msg-actions">
-            <button onclick="window.open('https://wa.me/?text='+encodeURIComponent('Olá ${nomeSafe}! Vi sua mensagem: ${msgSafe} - Ana&#32;Clara'),' _blank')" class="mini-btn whatsapp">WhatsApp</button>
-            <button onclick="deletarLead('${l.id}')" class="mini-btn del">Apagar</button>
+            <button onclick="marcarLido('${l.id}')" class="mini-btn lido"><i class="fa-solid fa-check"></i> Marcar como lido</button>
+            <button onclick="responderWhatsApp('${l.id}')" class="mini-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+            <button onclick="copiarEmail('${l.email}')" class="mini-btn copy"><i class="fa-solid fa-copy"></i> Copiar e-mail</button>
+            <button onclick="deletarLead('${l.id}')" class="mini-btn del"><i class="fa-solid fa-trash"></i> Apagar</button>
           </div>
-        </div>
-      `;
+        </div>`;
     });
-  } else {
-    listaMsgs.innerHTML='<small style="color:#9a8fa6">Nenhuma mensagem ainda.</small>';
-  }
+  } else { listaMsgs.innerHTML='<small style="color:#9a8fa6">Nenhuma mensagem ainda.</small>'; }
 }
 
 function editarProjeto(index){
@@ -210,24 +219,19 @@ function editarProjeto(index){
   document.getElementById('projeto-url').value = projeto.link||'';
   document.getElementById('projeto-desc').value = projeto.descricao||'';
   const btn = document.querySelector('#form-projeto button[type="submit"]');
-  btn.innerHTML='💾 Atualizar projeto';
-  btn.dataset.editandoId = projeto.id;
-  btn.dataset.editandoIndex = index;
+  btn.innerHTML='Atualizar projeto'; btn.dataset.editandoId = projeto.id; btn.dataset.editandoIndex = index;
   document.getElementById('titulo-form-projeto').innerHTML='<i class="fa-solid fa-pen" style="color:#7540ad"></i> Editando: '+projeto.titulo;
   document.getElementById('btn-cancelar-edicao').style.display='block';
   window.scrollTo({top:0, behavior:'smooth'});
 }
-
 function cancelarEdicao(){
   document.getElementById('form-projeto').reset();
   const btn = document.querySelector('#form-projeto button[type="submit"]');
   btn.innerHTML='<i class="fa-solid fa-rocket"></i> Publicar projeto';
-  delete btn.dataset.editandoId;
-  delete btn.dataset.editandoIndex;
+  delete btn.dataset.editandoId; delete btn.dataset.editandoIndex;
   document.getElementById('titulo-form-projeto').innerHTML='<i class="fa-solid fa-plus" style="color:#7540ad"></i> Cadastrar novo projeto';
   document.getElementById('btn-cancelar-edicao').style.display='none';
 }
-
 async function salvarProjeto(e){
   e.preventDefault();
   const titulo=document.getElementById('projeto-titulo').value.trim();
@@ -241,19 +245,20 @@ async function salvarProjeto(e){
   if(editandoId){
     const { error } = await supabaseClient.from('projetos').update({titulo,categoria,imagem,link,descricao}).eq('id', editandoId);
     if(error){ alert('Erro ao atualizar: '+error.message); } else { alert('Projeto atualizado! ✅'); }
-    btn.innerHTML='<i class="fa-solid fa-rocket"></i> Publicar projeto';
-    delete btn.dataset.editandoId;
-    delete btn.dataset.editandoIndex;
-    document.getElementById('titulo-form-projeto').innerHTML='<i class="fa-solid fa-plus" style="color:#7540ad"></i> Cadastrar novo projeto';
-    document.getElementById('btn-cancelar-edicao').style.display='none';
   } else {
     const { error } = await supabaseClient.from('projetos').insert([{titulo,categoria,imagem,link,descricao}]);
     if(error){ alert('Erro: '+error.message); } else { alert('Projeto publicado! ✅'); }
   }
-  e.target.reset();
-  carregarDashboard();
+  cancelarEdicao(); carregarDashboard();
 }
-
+function marcarLido(id){ document.getElementById('msg-'+id)?.classList.toggle('lida'); }
+function responderWhatsApp(id){
+  const lead = leadsCache.find(x=> String(x.id)===String(id));
+  if(!lead) return;
+  const texto = `Olá ${lead.nome}! Vi sua mensagem: "${lead.mensagem}" - Sou a Ana Clara!`;
+  window.open('https://wa.me/?text='+encodeURIComponent(texto), '_blank');
+}
+function copiarEmail(email){ navigator.clipboard.writeText(email); alert('E-mail copiado: '+email); }
 async function deletarProjeto(id){ if(!confirm('Excluir este projeto?')) return; await supabaseClient.from('projetos').delete().eq('id',id); carregarDashboard(); }
 async function deletarLead(id){ if(!confirm('Apagar mensagem?')) return; await supabaseClient.from('leads').delete().eq('id',id); carregarDashboard(); }
 
